@@ -2,54 +2,54 @@
 
 using namespace std;
 
-matrix::matrix(int size) {
-    this->size = size;
-    this->cells = new number*[this->size];
-    for (int i = 0; i < this->size; i++)
-        this->cells[i] = new number[this->size]{};
+matrix::matrix(int s) {
+    size = s;
+    cells = new number*[size];
+    for (int i = 0; i < size; i++)
+        cells[i] = new number[size]{};
 }
 
 matrix::~matrix() {
-    for (int i = 0; i < this->size; i++)
-        delete [] this->cells[i];
-    delete [] this->cells;
+    for (int i = 0; i < size; i++)
+        delete [] cells[i];
+    delete [] cells;
 }
 
 void matrix::init() {
-    for (int i = 0; i < this->size; i++) {
-        for (int j = 0; j < this->size; j++) {
+    for (int i = 0; i < size; i++) {
+        for (int j = 0; j < size; j++) {
             number x;
             cout << "At [" << i + 1 << "," << j + 1 << "]: ";
             cin >> x;
-            this->cells[i][j] = x;
+            cells[i][j] = x;
         }
     }
 }
 
 void matrix::transp() {
-    for(int i = 0; i < this->size; i++)
-        for(int j = i; j < this->size; j++)
-            swap(this->cells[i][j], this->cells[j][i]);
+    for(int i = 0; i < size; i++)
+        for(int j = i; j < size; j++)
+            swap(cells[i][j], cells[j][i]);
 }
 
 number matrix::determ() {
     if (this->size == 1)
-        return this->cells[0][0];
+        return cells[0][0];
     else if (this->size == 2)
-        return this->cells[0][0] * this->cells[1][1] - this->cells[0][1] * this->cells[1][0];
+        return cells[0][0] * cells[1][1] - cells[0][1] * cells[1][0];
     number d = 0;
-    for (int k = 0; k < this->size; k++) {
-        matrix m(this->size - 1);
-        for (int i = 1; i < this->size; i++) {
+    for (int k = 0; k < size; k++) {
+        matrix m(size - 1);
+        for (int i = 1; i < size; i++) {
             int t = 0;
-            for (int j = 0; j < this->size; j++) {
+            for (int j = 0; j < size; j++) {
                 if (j == k)
                     continue;
-                m.cells[i-1][t] = this->cells[i][j];
+                m.cells[i-1][t] = cells[i][j];
                 t++;
             }
         }
-        d += pow(-1, k + 2) * this->cells[0][k] * m.determ();
+        d += pow(-1, k + 2) * cells[0][k] * m.determ();
     }
     return d;
 }

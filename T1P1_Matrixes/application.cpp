@@ -6,24 +6,28 @@ using namespace std;
 TApplication::TApplication() {}
 
 int TApplication::exec() {
+    int s;
+    cout << "Enter matrix size: ";
+    cin >> s;
+    matr = new matrix(s);
     while (true) {
         int choice = menu();
 
         switch(choice) {
             case 1:
-                this->matr.init();
+                matr->init();
                 break;
             case 2:
-                cout << this->matr.determ() << endl;
+                cout << matr->determ() << endl;
                 break;
             case 3:
-                this->matr.transp();
-                cout << matr;
+                matr->transp();
+                cout << *matr;
                 break;
             case 4:
                 break;
             case 5:
-                cout << matr;
+                cout << *matr;
                 break;
             case 0:
                 return 0;
@@ -31,6 +35,7 @@ int TApplication::exec() {
                 break;
         }
     }
+    delete matr;
 }
 
 int TApplication::menu() {
