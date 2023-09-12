@@ -18,12 +18,12 @@ int TApplication::exec() {
                 break;
             case 3:
                 this->matr.transp();
-                this->matr.print();
+                cout << matr;
                 break;
             case 4:
                 break;
             case 5:
-                this->matr.print();
+                cout << matr;
                 break;
             case 0:
                 return 0;

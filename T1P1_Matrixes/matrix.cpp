@@ -1,21 +1,9 @@
 #include "matrix.h"
-#include <iostream>
 #include <math.h>
 
 using namespace std;
 
 matrix::matrix() {}
-
-void matrix::print() {
-    cout << "Matrix [" << MSIZE << "x" << MSIZE << "] = {" << endl;
-    for (int i = 0; i < MSIZE; i++) {
-        cout << '\t';
-        for (int j = 0; j < MSIZE; j++)
-            cout << this->cells[i][j] << " ";
-        cout << endl;
-    }
-    cout << "}" << endl;
-}
 
 void matrix::init() {
     for (int i = 0; i < MSIZE; i++) {
@@ -67,4 +55,16 @@ void matrix::determ() {
     }
 
     cout << "Determinant: " << determ << endl;
+}
+
+ostream& operator<< (ostream& os, matrix& m) {
+    os << "Matrix [" << MSIZE << "x" << MSIZE << "] = {" << endl;
+    for (int i = 0; i < MSIZE; i++) {
+        os << '\t';
+        for (int j = 0; j < MSIZE; j++)
+            os << m.cells[i][j] << " ";
+        os << endl;
+    }
+    os << "}" << endl;
+    return os;
 }
