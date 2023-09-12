@@ -66,9 +66,5 @@ void matrix::determ() {
         determ *= matrix2[i][i];
     }
 
-//    if(determ == -0) {
-//        determ = 0;
-//    }
-
     cout << "Determinant: " << determ << endl;
 }
