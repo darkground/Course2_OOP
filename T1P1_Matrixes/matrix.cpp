@@ -10,7 +10,7 @@ void matrix::print() {
     for (int i = 0; i < MSIZE; i++) {
         cout << '\t';
         for (int j = 0; j < MSIZE; j++) {
-            cout << this->cells[i * 3 + j] << " ";
+            cout << this->cells[i][j] << " ";
         }
         cout << endl;
     }
@@ -18,10 +18,12 @@ void matrix::print() {
 }
 
 void matrix::init() {
-    for (int i = 0; i < MSIZE * MSIZE; i++) {
-        number x;
-        cout << "At [" << i / MSIZE + 1 << "," << i % MSIZE + 1 << "]: ";
-        cin >> x;
-        this->cells[i] = x;
+    for (int i = 0; i < MSIZE; i++) {
+        for (int j = 0; j < MSIZE; j++) {
+            number x;
+            cout << "At [" << i + 1 << "," << j + 1 << "]: ";
+            cin >> x;
+            this->cells[i][j] = x;
+        }
     }
 }

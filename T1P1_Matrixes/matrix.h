@@ -8,7 +8,7 @@
 class matrix
 {
 private:
-    number cells[MSIZE * MSIZE]{};
+    number cells[MSIZE][MSIZE]{};
 public:
     matrix();
     void print();
