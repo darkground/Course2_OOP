@@ -1,5 +1,4 @@
 #include "matrix.h"
-#include <iostream>
 
 using namespace std;
 
@@ -7,24 +6,13 @@ matrix::matrix(int size) {
     this->size = size;
     this->cells = new number*[this->size];
     for (int i = 0; i < this->size; i++)
-        this->cells[i] = new number[this->size];
+        this->cells[i] = new number[this->size]{};
 }
 
 matrix::~matrix() {
     for (int i = 0; i < this->size; i++)
         delete [] this->cells[i];
     delete [] this->cells;
-}
-
-void matrix::print() {
-    cout << "Matrix [" << this->size << "x" << this->size << "] = {" << endl;
-    for (int i = 0; i < this->size; i++) {
-        cout << '\t';
-        for (int j = 0; j < this->size; j++)
-            cout << this->cells[i][j] << " ";
-        cout << endl;
-    }
-    cout << "}" << endl;
 }
 
 void matrix::init() {
@@ -64,4 +52,16 @@ number matrix::determ() {
         d += pow(-1, k + 2) * this->cells[0][k] * m.determ();
     }
     return d;
+}
+
+ostream& operator<< (ostream& os, matrix& m) {
+    os << "Matrix [" << m.size << "x" << m.size << "] = {" << endl;
+    for (int i = 0; i < m.size; i++) {
+        os << '\t';
+        for (int j = 0; j < m.size; j++)
+            os << m.cells[i][j] << " ";
+        os << endl;
+    }
+    os << "}" << endl;
+    return os;
 }

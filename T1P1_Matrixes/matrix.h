@@ -2,6 +2,7 @@
 #define MATRIX_H
 
 #include "number.h"
+#include <iostream>
 
 class matrix
 {
@@ -11,10 +12,11 @@ private:
 public:
     matrix(int);
     ~matrix();
-    void print();
     void init();
     void transp();
     number determ();
+
+    friend std::ostream& operator<< (std::ostream&, matrix&);
 };
 
 #endif // MATRIX_H

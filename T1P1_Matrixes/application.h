@@ -6,7 +6,7 @@
 class TApplication
 {
 private:
-    matrix matr{2};
+    matrix matr{3};
 
 public:
     TApplication();
