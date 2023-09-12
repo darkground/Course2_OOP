@@ -20,7 +20,7 @@ void matrix::print() {
 void matrix::init() {
     for (int i = 0; i < MSIZE * MSIZE; i++) {
         number x;
-        cout << "At [" << i / 3 + 1 << "," << i % 3 + 1 << "]: ";
+        cout << "At [" << i / MSIZE + 1 << "," << i % MSIZE + 1 << "]: ";
         cin >> x;
         this->cells[i] = x;
     }
