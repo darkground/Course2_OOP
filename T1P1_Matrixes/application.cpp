@@ -14,6 +14,7 @@ int TApplication::exec() {
                 this->matr.init();
                 break;
             case 2:
+                cout << this->matr.determ() << endl;
                 break;
             case 3:
                 this->matr.transp();

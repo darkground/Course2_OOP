@@ -3,17 +3,18 @@
 
 #include "number.h"
 
-#define MSIZE 3
-
 class matrix
 {
 private:
-    number cells[MSIZE][MSIZE]{};
+    int size;
+    number** cells;
 public:
-    matrix();
+    matrix(int);
+    ~matrix();
     void print();
     void init();
     void transp();
+    number determ();
 };
 
 #endif // MATRIX_H
