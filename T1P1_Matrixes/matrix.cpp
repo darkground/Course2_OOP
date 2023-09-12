@@ -27,3 +27,13 @@ void matrix::init() {
         }
     }
 }
+
+void matrix::transp() {
+    for(int i = 0; i < MSIZE; ++i)
+    {
+        for(int j = i; j < MSIZE; ++j)
+        {
+            swap(this->cells[i][j], this->cells[j][i]);
+        }
+    }
+}

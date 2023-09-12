@@ -16,6 +16,8 @@ int TApplication::exec() {
             case 2:
                 break;
             case 3:
+                this->matr.transp();
+                this->matr.print();
                 break;
             case 4:
                 break;

@@ -13,6 +13,7 @@ public:
     matrix();
     void print();
     void init();
+    void transp();
 };
 
 #endif // MATRIX_H
