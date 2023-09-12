@@ -3,15 +3,16 @@
 
 #include "number.h"
 
-#define MHEIGHT 3
-#define MWIDTH 3
+#define MSIZE 3
 
 class matrix
 {
 private:
-    number cells[MHEIGHT * MWIDTH]{};
+    number cells[MSIZE * MSIZE]{};
 public:
     matrix();
+    void print();
+    void init();
 };
 
 #endif // MATRIX_H
