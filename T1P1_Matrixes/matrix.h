@@ -14,6 +14,7 @@ public:
     void print();
     void init();
     void transp();
+    void determ();
 };
 
 #endif // MATRIX_H
