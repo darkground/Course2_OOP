@@ -25,6 +25,7 @@ int TApplication::exec() {
                 cout << *matr;
                 break;
             case 4:
+                cout << "Rank: " << matr->rank() << endl;
                 break;
             case 5:
                 cout << *matr;
