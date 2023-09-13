@@ -18,7 +18,7 @@ int TApplication::exec() {
                 matr->init();
                 break;
             case 2:
-                cout << matr->determ() << endl;
+                cout << "Determinant: " << matr->determ() << endl;
                 break;
             case 3:
                 matr->transp();

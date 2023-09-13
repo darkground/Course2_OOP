@@ -33,9 +33,9 @@ void matrix::transp() {
 }
 
 number matrix::determ() {
-    if (this->size == 1)
+    if (size == 1)
         return cells[0][0];
-    else if (this->size == 2)
+    else if (size == 2)
         return cells[0][0] * cells[1][1] - cells[0][1] * cells[1][0];
     number d = 0;
     for (int k = 0; k < size; k++) {
