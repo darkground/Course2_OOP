@@ -4,17 +4,19 @@
 #include "number.h"
 #include <iostream>
 
-#define MSIZE 3
-
 class matrix
 {
 private:
-    number cells[MSIZE][MSIZE]{};
+    int size;
+    number** cells;
 public:
-    matrix();
+    matrix(matrix&);
+    matrix(int);
+    ~matrix();
     void init();
     void transp();
-    void determ();
+    number determ();
+    int rank();
 
     friend std::ostream& operator<< (std::ostream&, matrix&);
 };
