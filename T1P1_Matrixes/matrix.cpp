@@ -76,7 +76,7 @@ int matrix::rank()
     matrix copy(*this);
 
     for (int row = 0; row < rank; row++) {
-        if (copy.cells[row][row] != 0) {
+        if (copy.cells[row][row]) {
             for (int col = 0; col < size; col++) {
                 if (col != row) {
                     double mult = (double)copy.cells[col][row] / copy.cells[row][row];
@@ -87,9 +87,9 @@ int matrix::rank()
         } else {
             bool onlyZeros = true;
             for (int i = row + 1; i < size;  i++) {
-                if (copy.cells[i][row] != 0) {
+                if (copy.cells[i][row]) {
                     for (int j = 0; j < rank; j++)
-                        swap(cells[row][j], cells[i][j]);
+                        swap(copy.cells[row][j], copy.cells[i][j]);
                     onlyZeros = false;
                     break;
                 }
