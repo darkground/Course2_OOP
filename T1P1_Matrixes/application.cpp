@@ -3,8 +3,6 @@
 
 using namespace std;
 
-TApplication::TApplication() {}
-
 int TApplication::exec() {
     int s;
     cout << "Enter matrix size: ";
@@ -41,15 +39,17 @@ int TApplication::exec() {
     delete matr;
 }
 
+/*
+ * Пользовательское меню
+ * 1. Ввод матрицы с клавиатуры
+ * 2. Определитель матрицы
+ * 3. Транспонирование матрицы
+ * 4. Вычислить ранг матрицы
+ * 5. Печать матрицы в консоль
+ */
 int TApplication::menu() {
     int user_choice;
-    /*
-     * 1. Ввод матрицы с клавиатуры
-     * 2. Определитель матрицы
-     * 3. Транспонирование матрицы
-     * 4. Вычислить ранг матрицы
-     * 5. Печать матрицы в консоль
-     */
+
     cout
         << endl << endl
         << "Matrix Menu" << endl

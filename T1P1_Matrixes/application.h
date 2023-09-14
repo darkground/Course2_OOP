@@ -9,7 +9,6 @@ private:
     matrix* matr;
 
 public:
-    TApplication();
     int exec();
     int menu();
 };
