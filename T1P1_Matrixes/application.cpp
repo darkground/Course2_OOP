@@ -9,6 +9,8 @@ int TApplication::exec() {
     int s;
     cout << "Enter matrix size: ";
     cin >> s;
+    if (s < 1)
+        return -1;
     matr = new matrix(s);
     while (true) {
         int choice = menu();
