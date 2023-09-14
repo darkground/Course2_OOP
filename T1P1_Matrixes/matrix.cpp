@@ -1,4 +1,5 @@
 #include "matrix.h"
+#include <iomanip>
 
 using namespace std;
 
@@ -109,7 +110,7 @@ ostream& operator<< (ostream& os, matrix& m) {
     for (int i = 0; i < m.size; i++) {
         os << '\t';
         for (int j = 0; j < m.size; j++)
-            os << m.cells[i][j] << " ";
+            os << setw (7) << m.cells[i][j] << " ";
         os << endl;
     }
     os << "}" << endl;
