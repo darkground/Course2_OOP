@@ -3,6 +3,10 @@
 
 using namespace std;
 
+/*
+ * Конструктор класса matrix
+ * Создать матрицу размера s
+ */
 matrix::matrix(int s) {
     size = s;
     cells = new number*[size];
@@ -10,6 +14,10 @@ matrix::matrix(int s) {
         cells[i] = new number[size]{};
 }
 
+/*
+ * Конструктор класса matrix
+ * Скопировать содержимое одной матрицы
+ */
 matrix::matrix(matrix& other) {
     this->size = other.size;
     cells = new number*[size];
@@ -20,12 +28,19 @@ matrix::matrix(matrix& other) {
     }
 }
 
+/*
+ * Деструктор класса matrix
+ * Удаление двумерного динамического массива cells
+ */
 matrix::~matrix() {
     for (int i = 0; i < size; i++)
         delete [] cells[i];
     delete [] cells;
 }
 
+/*
+ * Инициализировать матрицу с клавиатуры
+ */
 void matrix::init() {
     for (int i = 0; i < size; i++) {
         for (int j = 0; j < size; j++) {
@@ -37,6 +52,9 @@ void matrix::init() {
     }
 }
 
+/*
+ * Транспонирование матрицы
+ */
 void matrix::transp() {
     for(int i = 0; i < size; i++)
         for(int j = i; j < size; j++)
@@ -69,6 +87,9 @@ number matrix::determ() {
     return det;
 }
 
+/*
+ * Вычисление ранга матрицы через Метод Гаусса
+ */
 int matrix::rank()
 {
     int rank = size;
@@ -105,6 +126,9 @@ int matrix::rank()
     return rank;
 }
 
+/*
+ * Перегрузка оператора вывода для matrix
+ */
 ostream& operator<< (ostream& os, matrix& m) {
     os << "Matrix [" << m.size << "x" << m.size << "] = {" << endl;
     for (int i = 0; i < m.size; i++) {
