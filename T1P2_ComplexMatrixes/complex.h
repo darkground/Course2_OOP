@@ -8,8 +8,8 @@ class TComplex
     double Re, Im;
 public:
     TComplex();
-    TComplex(double);
-    TComplex(double, double);
+    TComplex(const double&);
+    TComplex(const double&, const double&);
 
     TComplex operator+ (TComplex);
     TComplex operator+= (TComplex);

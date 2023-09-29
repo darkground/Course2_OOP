@@ -1,5 +1,7 @@
 #include "complex.h"
 
+const double PRECISION = 0.001;
+
 /*
  * Конструктор комплексного числа
  */
@@ -11,7 +13,7 @@ TComplex::TComplex(){
 /*
  * Конструктор комплексного числа из реальной части
  */
-TComplex::TComplex(double r){
+TComplex::TComplex(const double& r){
     Re = r;
     Im = 0;
 }
@@ -19,7 +21,7 @@ TComplex::TComplex(double r){
 /*
  * Конструктор комплексного числа из реальной и мнимой части
  */
-TComplex::TComplex(double r, double i){
+TComplex::TComplex(const double& r, const double& i){
     Re = r;
     Im = i;
 }
@@ -100,12 +102,12 @@ std::istream& operator>>(std::istream& is, TComplex& c){
  * Равенство двух комплексных чисел
  */
 bool TComplex::operator==(TComplex c){
-    return (Re == c.Re) && (Im == c.Im);
+    return (abs(Re - c.Re) < PRECISION) && (abs(Im - c.Im) < PRECISION);
 }
 
 /*
  * Неравенство двух комплексных чисел
  */
 bool TComplex::operator!=(TComplex c){
-    return (Re != c.Re) || (Im != c.Im);
+    return (abs(Re - c.Re) > PRECISION) || (abs(Im - c.Im) > PRECISION);
 }
