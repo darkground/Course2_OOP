@@ -69,7 +69,7 @@ number matrix::determ() {
     if (size == 1)
         return cells[0][0];
     else if (size == 2) {
-        cout << (cells[0][0] * cells[1][1]) << " " << (cells[0][1] * cells[1][0]) << endl;
+        // cout << (cells[0][0] * cells[1][1]) << " " << (cells[0][1] * cells[1][0]) << endl;
         return cells[0][0] * cells[1][1] - cells[0][1] * cells[1][0];
     }
 
