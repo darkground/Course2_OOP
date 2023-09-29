@@ -28,11 +28,15 @@ TComplex TComplex::operator- (){
 }
 
 TComplex TComplex::operator+= (TComplex c){
-    return TComplex(Re + c.Re, Im + c.Im);
+    Re += c.Re;
+    Im += c.Im;
+    return *this;
 }
 
 TComplex TComplex::operator-= (TComplex c){
-    return TComplex(Re - c.Re, Im - c.Im);
+    Re -= c.Re;
+    Im -= c.Im;
+    return *this;
 }
 
 TComplex TComplex::operator* (TComplex c){
