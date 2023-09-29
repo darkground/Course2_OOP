@@ -68,10 +68,8 @@ void matrix::transp() {
 number matrix::determ() {
     if (size == 1)
         return cells[0][0];
-    else if (size == 2) {
-        // cout << (cells[0][0] * cells[1][1]) << " " << (cells[0][1] * cells[1][0]) << endl;
+    else if (size == 2)
         return cells[0][0] * cells[1][1] - cells[0][1] * cells[1][0];
-    }
 
     number det = 0;
     for (int k = 0; k < size; k++) {
