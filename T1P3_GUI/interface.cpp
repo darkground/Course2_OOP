@@ -150,7 +150,7 @@ void TInterface::determinant() {
         r << m.determ();
         op_result->setText(r);
     } catch (std::runtime_error e) {
-        op_result->setText(QString("Operation aborted: ") + e.what());
+        op_result->setText(QString("Determinant calculation failed: ") + e.what());
     }
 }
 
@@ -164,7 +164,7 @@ void TInterface::rank() {
         r += QString().setNum(m.rank());
         op_result->setText(r);
     } catch (std::runtime_error e) {
-        op_result->setText(QString("Operation aborted: ") + e.what());
+        op_result->setText(QString("Rank calculation failed: ") + e.what());
     }
 }
 
@@ -179,6 +179,6 @@ void TInterface::transpose() {
         r << m;
         op_result->setText(r);
     } catch (std::runtime_error e) {
-        op_result->setText(QString("Operation aborted: ") + e.what());
+        op_result->setText(QString("Transposing failed: ") + e.what());
     }
 }
