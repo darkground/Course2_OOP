@@ -4,7 +4,7 @@
 TInterface::TInterface(QWidget *parent)
     : QWidget(parent)
 {
-    setWindowTitle("Работа #3");
+    setWindowTitle("OOP Practice #3");
     setFixedSize(400, 270);
     // Интерфейс матрицы
     n1 = new QLabel("M[1,1] = ", this);
