@@ -77,7 +77,7 @@ TInterface::TInterface(QWidget *parent)
     b_transp = new QPushButton("Transpose", this);
     b_transp->setGeometry(300, 80, 80, 30);
     // Текст с результатом
-    op_result = new QLabel("Operate on the matrix using buttons above...", this);
+    op_result = new QLabel("Operate on the matrix using buttons and text fields above...", this);
     op_result->setGeometry(20, 190, 300, 75);
     // Соединение сигналов и слотов
     connect(b_determ, SIGNAL(pressed()), this, SLOT(determinant()));
