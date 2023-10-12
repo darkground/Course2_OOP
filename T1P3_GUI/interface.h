@@ -43,9 +43,9 @@ public:
     ~TInterface();
 
     matrix make();
-
 public slots:
     void determinant();
     void rank();
+    void transpose();
 };
 #endif // TINTERFACE_H

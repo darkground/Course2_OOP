@@ -155,12 +155,14 @@ ostream& operator<< (ostream& os, matrix& m) {
  * Перегрузка оператора вывода в QString для matrix
 */
 QString& operator<< (QString& qs, matrix& m) {
+    qs += "{\n";
     for (int i = 0; i < m.size; i++) {
         for (int j = 0; j < m.size; j++) {
+            qs += "\t";
             qs << m.cells[i][j];
-            qs += " ";
         }
         qs += "\n";
     }
+    qs += "}";
     return qs;
 }

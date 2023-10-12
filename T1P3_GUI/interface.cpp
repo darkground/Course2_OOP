@@ -5,7 +5,7 @@ TInterface::TInterface(QWidget *parent)
     : QWidget(parent)
 {
     setWindowTitle("Работа #3");
-    setFixedSize(400, 260);
+    setFixedSize(400, 270);
     // Интерфейс матрицы
     n1 = new QLabel("M[1,1] = ", this);
     n1->setGeometry(20, 20, 50, 25);
@@ -82,6 +82,7 @@ TInterface::TInterface(QWidget *parent)
     // Соединение сигналов и слотов
     connect(b_determ, SIGNAL(pressed()), this, SLOT(determinant()));
     connect(b_rank, SIGNAL(pressed()), this, SLOT(rank()));
+    connect(b_transp, SIGNAL(pressed()), this, SLOT(transpose()));
 }
 
 TInterface::~TInterface()
@@ -161,6 +162,21 @@ void TInterface::rank() {
         matrix m = make();
         QString r("Rank: ");
         r += QString().setNum(m.rank());
+        op_result->setText(r);
+    } catch (std::runtime_error e) {
+        op_result->setText(QString("Operation aborted: ") + e.what());
+    }
+}
+
+/*
+ * Транспонировать матрицу и показать результат
+ */
+void TInterface::transpose() {
+    try {
+        matrix m = make();
+        m.transp();
+        QString r("Transposed matrix = ");
+        r << m;
         op_result->setText(r);
     } catch (std::runtime_error e) {
         op_result->setText(QString("Operation aborted: ") + e.what());
