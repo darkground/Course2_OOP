@@ -78,7 +78,7 @@ TInterface::TInterface(QWidget *parent)
     b_transp->setGeometry(300, 80, 80, 30);
     // Текст с результатом
     op_result = new QLabel("Operate on the matrix using buttons and text fields above...", this);
-    op_result->setGeometry(20, 190, 300, 75);
+    op_result->setGeometry(20, 190, 320, 75);
     // Соединение сигналов и слотов
     connect(b_determ, SIGNAL(pressed()), this, SLOT(determinant()));
     connect(b_rank, SIGNAL(pressed()), this, SLOT(rank()));
