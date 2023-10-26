@@ -12,31 +12,35 @@ TApplication::TApplication(int argc, char *argv[]) : QCoreApplication(argc,argv)
 
 void TApplication::recieve(QByteArray msg){
     QString answer;
+    qDebug() << "[info] raw request:" << QString(msg);
     matrix m = make(msg);
     int pos = msg.indexOf(separator);
     int message_type = msg.left(pos).toInt();
     try {
         switch (message_type) {
         case REQ_DETERMINANT:
-            qDebug() << "[info] determinant request";
+            qDebug() << "[info] determinant requested";
             answer << QString().setNum(ANS_DETERMINANT) << (QString) m.determ();
             break;
         case REQ_RANK:
-            qDebug() << "[info] rank request";
+            qDebug() << "[info] rank requested";
             answer << QString().setNum(ANS_RANK) << QString().setNum(m.rank());
             break;
         case REQ_TRANSPOSE:
-            qDebug() << "[info] transpose request";
-            answer << QString().setNum(ANS_PRINT) << m;
+            qDebug() << "[info] transpose requested";
+            m.transp();
+            answer << QString().setNum(ANS_PRINT) << m << QString(separator);
             break;
         default:
-            qDebug() << "[info] unknown request: " << message_type;
+            qDebug() << "[error] unknown request:" << message_type;
             return;
         }
     } catch (std::runtime_error e) {
-        qDebug() << "[error] runtime error: " << e.what();
+        answer = QString();
+        qDebug() << "[error] runtime error:" << e.what();
         answer << QString().setNum(ANS_ERROR) << e.what();
     }
+    qDebug() << "[info] raw response:" << answer;
     con->send(answer.toUtf8());
 }
 
