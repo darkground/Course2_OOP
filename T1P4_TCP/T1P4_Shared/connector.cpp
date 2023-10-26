@@ -18,7 +18,6 @@ void TConnector::send(QByteArray msg)
     if (ready)
     {
         writeDatagram(msg, params.sHost, params.sPort);
-        qDebug()<<"SENT"<<msg;
     }
 }
 
@@ -29,7 +28,6 @@ void TConnector::recieve()
         quint64 size = pendingDatagramSize();
         QByteArray msg(size,'\0');
         readDatagram(msg.data(), size);
-        qDebug()<<"RECV"<<msg;
         emit recieved(msg);
     }
 }
