@@ -122,6 +122,9 @@ TInterface::~TInterface()
     delete op_result;
 }
 
+/*
+ * Создание запроса серверу
+ */
 void TInterface::formRequest() {
     QString msg;
     msg << n1_num->text() << n1_deno->text();
@@ -133,7 +136,7 @@ void TInterface::formRequest() {
     msg << n7_num->text() << n7_deno->text();
     msg << n8_num->text() << n8_deno->text();
     msg << n9_num->text() << n9_deno->text();
-    QPushButton *btn = (QPushButton*)sender();
+    QPushButton *btn = (QPushButton*)sender(); // Определение кнопки отправителя
     if (btn == b_determ) {
         msg << QString().setNum(REQ_DETERMINANT);
     } else if (btn == b_rank) {
@@ -144,6 +147,9 @@ void TInterface::formRequest() {
     emit request(msg);
 }
 
+/*
+ * Получение запроса от сервера
+ */
 void TInterface::answer(QString msg)
 {
     QString text;
@@ -165,6 +171,7 @@ void TInterface::answer(QString msg)
         text = "Rank: " + msg;
         break;
     default:
+        // Сервер недоступен или код неверный
         text = "Server is unreachable or provided invalid code (" + QString().setNum(message_type) + ")";
         break;
     }
