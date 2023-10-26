@@ -168,7 +168,7 @@ std::istream& operator>>(std::istream& is, TRational& c){
 }
 
 /*
- * Ввод рационального числа из массива QByteArray
+ * Ввод рационального числа из данных QByteArray
  */
 QByteArray& operator>>(QByteArray& arr, TRational& c)
 {

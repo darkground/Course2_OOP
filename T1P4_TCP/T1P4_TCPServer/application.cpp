@@ -2,6 +2,9 @@
 #include "application.h"
 #include "shared.h"
 
+/*
+ * Инициализация сервера
+ */
 TApplication::TApplication(int argc, char *argv[]) : QCoreApplication(argc,argv) {
     TConnParams params = { QHostAddress("127.0.0.1"), 10000, QHostAddress("127.0.0.1"), 10001 };
     con = new TConnector(params, this);
@@ -10,6 +13,10 @@ TApplication::TApplication(int argc, char *argv[]) : QCoreApplication(argc,argv)
     connect(con, SIGNAL(recieved(QByteArray)), this, SLOT(recieve(QByteArray)));
 }
 
+/*
+ * Слот получения данных по TCP
+ * QByteArray msg - данные
+ */
 void TApplication::recieve(QByteArray msg){
     QString answer;
     qDebug() << "[info] raw request:" << QString(msg);
@@ -45,7 +52,8 @@ void TApplication::recieve(QByteArray msg){
 }
 
 /*
- * Собрать матрицу из элементов QByteArray
+ * Собрать матрицу из данных QByteArray
+ * QByteArray& msg - данные
  */
 matrix TApplication::make(QByteArray& msg) {
     TRational r1,r2,r3,r4,r5,r6,r7,r8,r9;
