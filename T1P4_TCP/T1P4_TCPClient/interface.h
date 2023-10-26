@@ -41,11 +41,14 @@ public:
     TInterface(QWidget *parent = nullptr);
     ~TInterface();
 
-    //matrix make();
-//public slots:
-    //void determinant();
-    //void rank();
-    //void transpose();
+public slots:
+    void answer(QString);
+
+private slots:
+    void formRequest();
+
+signals:
+    void request(QString);
 };
 
 #endif // TINTERFACE_H

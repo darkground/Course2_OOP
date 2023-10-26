@@ -1,10 +1,11 @@
 #include "interface.h"
+#include "shared.h"
 
 TInterface::TInterface(QWidget *parent)
     : QWidget(parent)
 {
     setWindowTitle("OOP Practice #4 [Client]");
-    setFixedSize(400, 270);
+    setFixedSize(400, 275);
     // Интерфейс матрицы
     n1 = new QLabel("M[1,1] = ", this);
     n1->setGeometry(20, 20, 50, 25);
@@ -77,11 +78,11 @@ TInterface::TInterface(QWidget *parent)
     b_transp->setGeometry(300, 80, 80, 30);
     // Текст с результатом
     op_result = new QLabel("Operate on the matrix using buttons and text fields above...", this);
-    op_result->setGeometry(20, 190, 320, 75);
+    op_result->setGeometry(20, 190, 320, 80);
     // Соединение сигналов и слотов
-    //connect(b_determ, SIGNAL(pressed()), this, SLOT(determinant()));
-    //connect(b_rank, SIGNAL(pressed()), this, SLOT(rank()));
-    //connect(b_transp, SIGNAL(pressed()), this, SLOT(transpose()));
+    connect(b_determ, SIGNAL(pressed()), this, SLOT(formRequest()));
+    connect(b_rank, SIGNAL(pressed()), this, SLOT(formRequest()));
+    connect(b_transp, SIGNAL(pressed()), this, SLOT(formRequest()));
 }
 
 TInterface::~TInterface()
@@ -121,65 +122,51 @@ TInterface::~TInterface()
     delete op_result;
 }
 
-/*
- * Собрать матрицу из значений элементов интерфейса
- *//*
+void TInterface::formRequest() {
+    QString msg;
+    msg << n1_num->text() << n1_deno->text();
+    msg << n2_num->text() << n2_deno->text();
+    msg << n3_num->text() << n3_deno->text();
+    msg << n4_num->text() << n4_deno->text();
+    msg << n5_num->text() << n5_deno->text();
+    msg << n6_num->text() << n6_deno->text();
+    msg << n7_num->text() << n7_deno->text();
+    msg << n8_num->text() << n8_deno->text();
+    msg << n9_num->text() << n9_deno->text();
+    QPushButton *btn = (QPushButton*)sender();
+    if (btn == b_determ) {
+        msg << QString().setNum(REQ_DETERMINANT);
+    } else if (btn == b_rank) {
+        msg << QString().setNum(REQ_RANK);
+    } else if (btn == b_transp) {
+        msg << QString().setNum(REQ_TRANSPOSE);
+    }
+    emit request(msg);
+}
 
-matrix TInterface::make() {
-    TRational r1(n1_num->text().toInt(), n1_deno->text().toInt());
-    TRational r2(n2_num->text().toInt(), n2_deno->text().toInt());
-    TRational r3(n3_num->text().toInt(), n3_deno->text().toInt());
-    TRational r4(n4_num->text().toInt(), n4_deno->text().toInt());
-    TRational r5(n5_num->text().toInt(), n5_deno->text().toInt());
-    TRational r6(n6_num->text().toInt(), n6_deno->text().toInt());
-    TRational r7(n7_num->text().toInt(), n7_deno->text().toInt());
-    TRational r8(n8_num->text().toInt(), n8_deno->text().toInt());
-    TRational r9(n9_num->text().toInt(), n9_deno->text().toInt());
-    matrix m = matrix(3);
-    m.init(new number[9] {r1, r2, r3, r4, r5, r6, r7, r8, r9}, 3);
-    return m;
-}
-*/
-/*
- * Вычислить определитель и показать результат
- *//*
-void TInterface::determinant() {
-    try {
-        matrix m = make();
-        QString r("Determinant: ");
-        r << m.determ();
-        op_result->setText(r);
-    } catch (std::runtime_error e) {
-        op_result->setText(QString("Determinant calculation failed: ") + e.what());
+void TInterface::answer(QString msg)
+{
+    QString text;
+    int p = msg.indexOf(separator);
+    int message_type = msg.left(p).toInt();
+    msg = msg.mid(p+1,msg.length()-p-2);
+    switch (message_type)
+    {
+    case ANS_DETERMINANT:
+        text = "Determinant: " + msg;
+        break;
+    case ANS_ERROR:
+        text = "Error: " + msg;
+        break;
+    case ANS_PRINT:
+        text = "Matrix: " + msg;
+        break;
+    case ANS_RANK:
+        text = "Rank: " + msg;
+        break;
+    default:
+        text = "Server is unreachable or provided invalid code (" + QString().setNum(message_type) + ")";
+        break;
     }
+    op_result->setText(text);
 }
-*/
-/*
- * Вычислить ранг и показать результат
- *//*
-void TInterface::rank() {
-    try {
-        matrix m = make();
-        QString r("Rank: ");
-        r += QString().setNum(m.rank());
-        op_result->setText(r);
-    } catch (std::runtime_error e) {
-        op_result->setText(QString("Rank calculation failed: ") + e.what());
-    }
-}
-*/
-/*
- * Транспонировать матрицу и показать результат
- *//*
-void TInterface::transpose() {
-    try {
-        matrix m = make();
-        m.transp();
-        QString r("Transposed matrix = ");
-        r << m;
-        op_result->setText(r);
-    } catch (std::runtime_error e) {
-        op_result->setText(QString("Transposing failed: ") + e.what());
-    }
-}
-*/
