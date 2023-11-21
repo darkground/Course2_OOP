@@ -19,20 +19,19 @@ class TInterface : public QWidget
 
     // Ввод числителя
     QLineEdit
-        *n1_num, *n2_num, *n3_num,
-        *n4_num, *n5_num, *n6_num,
-        *n7_num, *n8_num, *n9_num;
+        *n1_first, *n2_first, *n3_first,
+        *n4_first, *n5_first, *n6_first,
+        *n7_first, *n8_first, *n9_first;
 
     // Ввод знаменателя
     QLineEdit
-        *n1_deno, *n2_deno, *n3_deno,
-        *n4_deno, *n5_deno, *n6_deno,
-        *n7_deno, *n8_deno, *n9_deno;
+        *n1_second, *n2_second, *n3_second,
+        *n4_second, *n5_second, *n6_second,
+        *n7_second, *n8_second, *n9_second;
 
     // Смена типов
     QRadioButton
         *r_float, *r_complex, *r_rational;
-
 
     // Кнопки управления
     QPushButton
