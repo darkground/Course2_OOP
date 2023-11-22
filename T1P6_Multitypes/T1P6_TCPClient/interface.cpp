@@ -9,6 +9,8 @@ TInterface::TInterface(QWidget *parent)
     // Интерфейс матрицы
     n1 = new QLabel("M[1,1] = ", this);
     n1->setGeometry(20, 20, 50, 25);
+    n1_sep = new QLabel("/", this);
+    n1_sep->setGeometry(80, 35, 30, 20);
     n1_first = new QLineEdit("1", this);
     n1_first->setGeometry(70, 15, 30, 20);
     n1_second = new QLineEdit("1", this);
@@ -16,6 +18,8 @@ TInterface::TInterface(QWidget *parent)
     //
     n2 = new QLabel("M[1,2] = ", this);
     n2->setGeometry(130, 20, 50, 25);
+    n2_sep = new QLabel("/", this);
+    n2_sep->setGeometry(190, 35, 30, 20);
     n2_first = new QLineEdit("1", this);
     n2_first->setGeometry(180, 15, 30, 20);
     n2_second = new QLineEdit("1", this);
@@ -23,6 +27,8 @@ TInterface::TInterface(QWidget *parent)
     //
     n3 = new QLabel("M[1,3] = ", this);
     n3->setGeometry(240, 20, 50, 25);
+    n3_sep = new QLabel("/", this);
+    n3_sep->setGeometry(300, 35, 30, 20);
     n3_first = new QLineEdit("1", this);
     n3_first->setGeometry(290, 15, 30, 20);
     n3_second = new QLineEdit("1", this);
@@ -30,6 +36,8 @@ TInterface::TInterface(QWidget *parent)
     //
     n4 = new QLabel("M[2,1] = ", this);
     n4->setGeometry(20, 80, 50, 25);
+    n4_sep = new QLabel("/", this);
+    n4_sep->setGeometry(80, 95, 30, 20);
     n4_first = new QLineEdit("1", this);
     n4_first->setGeometry(70, 75, 30, 20);
     n4_second = new QLineEdit("1", this);
@@ -37,6 +45,8 @@ TInterface::TInterface(QWidget *parent)
     //
     n5 = new QLabel("M[2,2] = ", this);
     n5->setGeometry(130, 80, 50, 25);
+    n5_sep = new QLabel("/", this);
+    n5_sep->setGeometry(190, 95, 30, 20);
     n5_first = new QLineEdit("1", this);
     n5_first->setGeometry(180, 75, 30, 20);
     n5_second = new QLineEdit("1", this);
@@ -44,6 +54,8 @@ TInterface::TInterface(QWidget *parent)
     //
     n6 = new QLabel("M[2,3] = ", this);
     n6->setGeometry(240, 80, 50, 25);
+    n6_sep = new QLabel("/", this);
+    n6_sep->setGeometry(300, 95, 30, 20);
     n6_first = new QLineEdit("1", this);
     n6_first->setGeometry(290, 75, 30, 20);
     n6_second = new QLineEdit("1", this);
@@ -51,6 +63,8 @@ TInterface::TInterface(QWidget *parent)
     //
     n7 = new QLabel("M[3,1] = ", this);
     n7->setGeometry(20, 140, 50, 25);
+    n7_sep = new QLabel("/", this);
+    n7_sep->setGeometry(80, 155, 30, 20);
     n7_first = new QLineEdit("1", this);
     n7_first->setGeometry(70, 135, 30, 20);
     n7_second = new QLineEdit("1", this);
@@ -58,6 +72,8 @@ TInterface::TInterface(QWidget *parent)
     //
     n8 = new QLabel("M[3,2] = ", this);
     n8->setGeometry(130, 140, 50, 25);
+    n8_sep = new QLabel("/", this);
+    n8_sep->setGeometry(190, 155, 30, 20);
     n8_first = new QLineEdit("1", this);
     n8_first->setGeometry(180, 135, 30, 20);
     n8_second = new QLineEdit("1", this);
@@ -65,6 +81,8 @@ TInterface::TInterface(QWidget *parent)
     //
     n9 = new QLabel("M[3,3] = ", this);
     n9->setGeometry(240, 140, 50, 25);
+    n9_sep = new QLabel("/", this);
+    n9_sep->setGeometry(300, 155, 30, 20);
     n9_first = new QLineEdit("1", this);
     n9_first->setGeometry(290, 135, 30, 20);
     n9_second = new QLineEdit("1", this);
@@ -98,30 +116,39 @@ TInterface::~TInterface()
     delete n1;
     delete n1_first;
     delete n1_second;
+    delete n1_sep;
     delete n2;
     delete n2_first;
     delete n2_second;
+    delete n2_sep;
     delete n3;
     delete n3_first;
     delete n3_second;
+    delete n3_sep;
     delete n4;
     delete n4_first;
     delete n4_second;
+    delete n4_sep;
     delete n5;
     delete n5_first;
     delete n5_second;
+    delete n5_sep;
     delete n6;
     delete n6_first;
     delete n6_second;
+    delete n6_sep;
     delete n7;
     delete n7_first;
     delete n7_second;
+    delete n7_sep;
     delete n8;
     delete n8_first;
     delete n8_second;
+    delete n8_sep;
     delete n9;
     delete n9_first;
     delete n9_second;
+    delete n9_sep;
 
     delete b_determ;
     delete b_rank;

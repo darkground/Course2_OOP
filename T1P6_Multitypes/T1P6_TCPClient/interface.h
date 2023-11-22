@@ -23,6 +23,12 @@ class TInterface : public QWidget
         *n4_first, *n5_first, *n6_first,
         *n7_first, *n8_first, *n9_first;
 
+    // Разделители
+    QLabel
+        *n1_sep, *n2_sep, *n3_sep,
+        *n4_sep, *n5_sep, *n6_sep,
+        *n7_sep, *n8_sep, *n9_sep;
+
     // Ввод знаменателя
     QLineEdit
         *n1_second, *n2_second, *n3_second,
