@@ -10,6 +10,7 @@ SOURCES += \
         ../T1P6_Shared/connector.cpp \
         ../T1P6_Shared/shared.cpp \
         application.cpp \
+        complex.cpp \
         main.cpp \
         rational.cpp
 
@@ -24,6 +25,7 @@ HEADERS += \
     ../T1P6_Shared/connector.h \
     ../T1P6_Shared/shared.h \
     application.h \
+    complex.h \
     matrix.h \
     matrixsquare.h \
     rational.h

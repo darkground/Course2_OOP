@@ -1,7 +1,7 @@
 #include <QDebug>
 #include "application.h"
 #include "rational.h"
-#include "shared.h"
+#include "complex.h"
 
 /*
  * Инициализация сервера
@@ -19,28 +19,59 @@ TApplication::TApplication(int argc, char *argv[]) : QCoreApplication(argc,argv)
  * QByteArray msg - данные
  */
 void TApplication::recieve(QByteArray msg){
-    QString answer;
     qDebug() << "[info] raw request:" << QString(msg);
-    MatrixSquare<TRational> m = make<TRational>(msg);
-    int pos = msg.indexOf(separator);
-    int message_type = msg.left(pos).toInt();
+    int message_type_pos = msg.indexOf(separator);
+    int message_type = msg.left(message_type_pos).toInt();
+    msg = msg.right(msg.length() - message_type_pos - 1);
+    int mode_pos = msg.indexOf(separator);
+    int mode = msg.left(mode_pos).toInt();
+    msg = msg.right(msg.length() - mode_pos - 1);
+    switch (mode) {
+    case MODE_RATIONAL: {
+        qDebug() << "[info] type rational";
+        MatrixSquare<TRational> m = make<TRational>(msg);
+        respond(m, (messages) message_type);
+        break;
+    }
+
+    case MODE_COMPLEX: {
+        qDebug() << "[info] type complex";
+        MatrixSquare<TComplex> m = make<TComplex>(msg);
+        respond(m, (messages) message_type);
+        break;
+    }
+    case MODE_FLOAT: {
+        qDebug() << "[info] type float";
+        MatrixSquare<double> m = make<double>(msg);
+        respond(m, (messages) message_type);
+        break;
+    }
+    default:
+        qDebug() << "[error]: type unknown: " << QString().setNum(message_type);
+        break;
+    }
+}
+
+template <class T>
+void TApplication::respond(MatrixSquare<T>& matr, messages msg) {
+    QString answer;
     try {
-        switch (message_type) {
+        switch (msg) {
         case REQ_DETERMINANT:
             qDebug() << "[info] determinant requested";
-            answer << QString().setNum(ANS_DETERMINANT) << (QString) m.determ();
+            answer << QString().setNum(ANS_DETERMINANT) << matr.determ() << QString(separator);
             break;
         case REQ_RANK:
             qDebug() << "[info] rank requested";
-            answer << QString().setNum(ANS_RANK) << QString().setNum(m.rank());
+            answer << QString().setNum(ANS_RANK) << QString().setNum(matr.rank());
             break;
         case REQ_TRANSPOSE:
             qDebug() << "[info] transpose requested";
-            m.transp();
-            answer << QString().setNum(ANS_PRINT) << m << QString(separator);
+            matr.transp();
+            answer << QString().setNum(ANS_PRINT) << matr << QString(separator);
             break;
         default:
-            qDebug() << "[error] unknown request:" << message_type;
+            qDebug() << "[error] unknown request:" << msg;
             return;
         }
     } catch (std::runtime_error e) {
