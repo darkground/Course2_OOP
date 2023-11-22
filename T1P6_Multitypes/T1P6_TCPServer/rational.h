@@ -28,9 +28,9 @@ public:
     bool operator!=(TRational);
 
     friend std::ostream& operator<<(std::ostream&,TRational);
-    friend QString& operator<<(QString&,TRational);
-
     friend std::istream& operator>>(std::istream&,TRational&);
+
+    friend QString& operator<<(QString&,TRational);
     friend QByteArray& operator>>(QByteArray&,TRational&);
     operator QString ();
 };
