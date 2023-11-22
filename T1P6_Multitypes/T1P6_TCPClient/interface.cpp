@@ -166,15 +166,7 @@ TInterface::~TInterface()
  */
 void TInterface::formRequest() {
     QString msg;
-    msg << n1_first->text() << n1_second->text();
-    msg << n2_first->text() << n2_second->text();
-    msg << n3_first->text() << n3_second->text();
-    msg << n4_first->text() << n4_second->text();
-    msg << n5_first->text() << n5_second->text();
-    msg << n6_first->text() << n6_second->text();
-    msg << n7_first->text() << n7_second->text();
-    msg << n8_first->text() << n8_second->text();
-    msg << n9_first->text() << n9_second->text();
+
     QPushButton *btn = (QPushButton*)sender(); // Определение кнопки отправителя
     if (btn == b_determ) {
         msg << QString().setNum(REQ_DETERMINANT);
@@ -183,6 +175,31 @@ void TInterface::formRequest() {
     } else if (btn == b_transp) {
         msg << QString().setNum(REQ_TRANSPOSE);
     }
+
+    if (r_rational->isChecked() || r_complex->isChecked()) {
+        msg << QString().setNum(r_rational->isChecked() ? MODE_RATIONAL : MODE_COMPLEX);
+        msg << n1_first->text() << n1_second->text();
+        msg << n2_first->text() << n2_second->text();
+        msg << n3_first->text() << n3_second->text();
+        msg << n4_first->text() << n4_second->text();
+        msg << n5_first->text() << n5_second->text();
+        msg << n6_first->text() << n6_second->text();
+        msg << n7_first->text() << n7_second->text();
+        msg << n8_first->text() << n8_second->text();
+        msg << n9_first->text() << n9_second->text();
+    } else {
+        msg << QString().setNum(MODE_FLOAT);
+        msg << n1_first->text();
+        msg << n2_first->text();
+        msg << n3_first->text();
+        msg << n4_first->text();
+        msg << n5_first->text();
+        msg << n6_first->text();
+        msg << n7_first->text();
+        msg << n8_first->text();
+        msg << n9_first->text();
+    }
+
     emit request(msg);
 }
 
