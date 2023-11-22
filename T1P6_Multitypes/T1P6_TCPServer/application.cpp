@@ -1,5 +1,6 @@
 #include <QDebug>
 #include "application.h"
+#include "rational.h"
 #include "shared.h"
 
 /*
@@ -20,7 +21,7 @@ TApplication::TApplication(int argc, char *argv[]) : QCoreApplication(argc,argv)
 void TApplication::recieve(QByteArray msg){
     QString answer;
     qDebug() << "[info] raw request:" << QString(msg);
-    MatrixSquare m = make(msg);
+    MatrixSquare<TRational> m = make<TRational>(msg);
     int pos = msg.indexOf(separator);
     int message_type = msg.left(pos).toInt();
     try {
@@ -55,10 +56,11 @@ void TApplication::recieve(QByteArray msg){
  * Собрать матрицу из данных QByteArray
  * QByteArray& msg - данные
  */
-MatrixSquare TApplication::make(QByteArray& msg) {
-    TRational r1,r2,r3,r4,r5,r6,r7,r8,r9;
+template <class T>
+MatrixSquare<T> TApplication::make(QByteArray& msg) {
+    T r1,r2,r3,r4,r5,r6,r7,r8,r9;
     msg >> r1 >> r2 >> r3 >> r4 >> r5 >> r6 >> r7 >> r8 >> r9;
-    MatrixSquare m = MatrixSquare(3);
-    m.init(new number[9] {r1, r2, r3, r4, r5, r6, r7, r8, r9});
+    MatrixSquare<T> m = MatrixSquare<T>(3);
+    m.init(new T[9] {r1, r2, r3, r4, r5, r6, r7, r8, r9});
     return m;
 }

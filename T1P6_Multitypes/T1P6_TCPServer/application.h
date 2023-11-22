@@ -14,7 +14,8 @@ class TApplication : public QCoreApplication
 public:
     TApplication(int argc, char *argv[]);
 
-    MatrixSquare make(QByteArray&);
+    template <class T>
+    MatrixSquare<T> make(QByteArray&);
 
 public slots:
 

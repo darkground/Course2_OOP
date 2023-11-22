@@ -11,8 +11,6 @@ SOURCES += \
         ../T1P6_Shared/shared.cpp \
         application.cpp \
         main.cpp \
-        matrix.cpp \
-        matrixsquare.cpp \
         rational.cpp
 
 # Default rules for deployment.
@@ -28,5 +26,4 @@ HEADERS += \
     application.h \
     matrix.h \
     matrixsquare.h \
-    number.h \
     rational.h
