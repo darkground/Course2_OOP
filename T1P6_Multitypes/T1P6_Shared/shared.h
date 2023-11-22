@@ -16,7 +16,15 @@ enum messages
     ANS_ERROR = 6
 };
 
+enum modes {
+    MODE_RATIONAL = 1,
+    MODE_COMPLEX = 2,
+    MODE_FLOAT = 3
+};
+
 extern const char separator;
 QString& operator<< (QString&,const QString&);
+QString& operator<< (QString&, const double&);
+QByteArray& operator>>(QByteArray&, double&);
 
 #endif // SHARED_H
