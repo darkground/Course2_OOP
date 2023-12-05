@@ -2,7 +2,6 @@
 #define MATRIX_H
 
 #include <QString>
-#include <QDebug>
 #include <iostream>
 #include <iomanip>
 
