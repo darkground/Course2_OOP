@@ -9,42 +9,47 @@ TSample::~TSample() {
     delete matr;
 }
 
-QPointF offsetAlongLine(const QPointF& start, const QPointF& end, qreal distance) {
-    // Calculate the direction vector of the line
-    QPointF direction = end - start;
+/*
+ * Смещение точки end на определённую дистанцию distance вдоль линии, созданной точками start и end
+ */
+QPointF offsetAlongLine(const QPointF& p1, const QPointF& p2, qreal distance) {
+    QPointF direction = p2 - p1;
 
-    // Normalize the direction vector
-    qreal length = QLineF(start, end).length();
+    qreal length = QLineF(p1, p2).length();
     direction /= length;
 
-    // Offset the point along the direction vector
-    return end + direction * distance;
+    return p2 + direction * distance;
 }
 
-// Function to calculate the angle between two points
-qreal angle(const QPointF &p1, const QPointF &p2) {
+/*
+ * Угол между двумя точками p1 и p2
+ */
+qreal angle(const QPointF& p1, const QPointF& p2) {
     return qAtan2(p2.y() - p1.y(), p2.x() - p1.x()) * 180.0 / M_PI;
 }
 
-// Function to rotate a point around another point
-QPointF rotatePoint(const QPointF &point, qreal angle) {
+/*
+ * Вращение определённой точки point на градус angle
+ */
+QPointF rotatePoint(const QPointF& p1, qreal angle) {
     qreal radianAngle = angle * M_PI / 180.0;
-    qreal x = point.x() * qCos(radianAngle) - point.y() * qSin(radianAngle);
-    qreal y = point.x() * qSin(radianAngle) + point.y() * qCos(radianAngle);
+    qreal x = p1.x() * qCos(radianAngle) - p1.y() * qSin(radianAngle);
+    qreal y = p1.x() * qSin(radianAngle) + p1.y() * qCos(radianAngle);
     return QPointF(x, y);
 }
 
-void drawArrow(QPainter* p, QPointF qf1, QPointF qf2) {
-    p->drawLine(qf1, qf2);
+/*
+ * Нарисовать стрелку используя QPainter p от точки p1 до точки p2
+ */
+void drawArrow(QPainter* p, QPointF p1, QPointF p2) {
+    p->drawLine(p1, p2);
 
-    // Calculate the arrowhead points
     QPointF arrowPoints[3] = {
-        qf2,  // Arrow tip (end point)
-        qf2 + rotatePoint(QPointF(-10, -5), angle(qf1, qf2)),  // Arrowhead point 1
-        qf2 + rotatePoint(QPointF(-10, 5), angle(qf1, qf2))    // Arrowhead point 2
+        p2,
+        p2 + rotatePoint(QPointF(-10, -5), angle(p1, p2)),
+        p2 + rotatePoint(QPointF(-10, 5), angle(p1, p2))
     };
 
-    // Draw the arrowhead
     p->drawPolygon(arrowPoints, 3);
 }
 
