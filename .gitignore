@@ -1,4 +1,5 @@
 # Main
+msvc_make.bat
 .qtc_clangd
 .qmake.stash
 debug/
