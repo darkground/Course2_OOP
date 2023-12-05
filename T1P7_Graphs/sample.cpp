@@ -1,5 +1,4 @@
 #include "sample.h"
-#include <QDebug>
 
 TSample::TSample(Matrix<qint16>* mat) {
     matr = mat;
