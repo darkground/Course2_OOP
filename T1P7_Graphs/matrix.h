@@ -2,6 +2,7 @@
 #define MATRIX_H
 
 #include <QString>
+#include <QDebug>
 #include <iostream>
 #include <iomanip>
 
@@ -89,9 +90,10 @@ void Matrix<T>::init() {
  */
 template <class T>
 void Matrix<T>::init(T* arr) {
+    unsigned c = 0;
     for (int i = 0; i < rows; i++)
         for (int j = 0; j < columns; j++)
-            cells[i][j] = arr[i * rows + j];
+            cells[i][j] = arr[c++];
 }
 
 /*
