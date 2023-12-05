@@ -26,6 +26,15 @@ TInterface::TInterface(QWidget *parent) : QMainWindow(parent) {
 
 TInterface::~TInterface()
 {
+    delete filelabel;
+    delete filename;
+    delete filechoose;
+    delete result;
+
+    if (canvas != 0) {
+        canvas->close();
+        delete canvas;
+    }
 }
 
 Matrix<qint16>* TInterface::read(QString& filename) {
@@ -47,15 +56,17 @@ Matrix<qint16>* TInterface::read(QString& filename) {
     return matr;
 }
 
-bool TInterface::isValid(Matrix<qint16>* matr) {
+QString TInterface::check(Matrix<qint16>* matr) {
+    if (matr->getSizeX() != matr->getSizeY()) return QString("Invalid matrix size");
     for (unsigned i = 0; i < matr->getSizeX(); i++) {
+        if (matr->get(i, i) != 0) return QString("Nodes have non-zero connections with itself");
         for (unsigned j = 0; j < matr->getSizeY(); j++) {
             if (matr->get(i, j) < 0) {
-                return false;
+                return QString("Invalid matrix values");
             }
         }
     }
-    return true;
+    return QString();
 }
 
 void TInterface::openFile() {
@@ -63,14 +74,21 @@ void TInterface::openFile() {
     if (!fi.isEmpty() && !fi.isNull()) {
         filename->setText(fi);
         Matrix<qint16>* matr = read(fi);
-        if (matr == 0)
-            result->setText("Selected file is not a graph");
+        if (matr == 0) result->setText("Selected file is not a graph");
         else {
-            if (isValid(matr))
-                result->setText("");
-            else
-                result->setText("Invalid matrix");
-            delete matr;
+            QString state = check(matr);
+            if (state.isEmpty()) {
+                result->setText("Shown in another window");
+                if (canvas != 0) {
+                    canvas->close();
+                    delete canvas;
+                }
+                canvas = new TCanvas(new TSample(matr));
+                canvas->show();
+            } else {
+                result->setText(state);
+                delete matr;
+            }
         }
     }
 }

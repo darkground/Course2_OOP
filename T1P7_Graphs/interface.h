@@ -7,8 +7,9 @@
 #include <QPushButton>
 #include <QLabel>
 #include <QLineEdit>
-#include <matrix.h>
 #include <vector>
+#include "matrix.h"
+#include "canvas.h"
 
 class TInterface : public QMainWindow
 {
@@ -17,15 +18,15 @@ class TInterface : public QMainWindow
     QLabel* filelabel;
     QLineEdit* filename;
     QPushButton* filechoose;
-
     QLabel* result;
-    QPushButton* go;
+
+    TCanvas* canvas = 0;
 public:
     TInterface(QWidget *parent = nullptr);
     ~TInterface();
 
     Matrix<qint16>* read(QString&);
-    bool isValid(Matrix<qint16>*);
+    QString check(Matrix<qint16>*);
 
 private slots:
     void openFile();
