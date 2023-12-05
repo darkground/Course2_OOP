@@ -1,5 +1,8 @@
 #include "interface.h"
 
+/*
+ * Необходимая перегрузка для работы с матрицами
+ */
 QString& operator<< (QString& qs, qint16 i) {
     qs += QString().setNum(i);
     return qs;
@@ -37,6 +40,9 @@ TInterface::~TInterface()
     }
 }
 
+/*
+ * Чтение матрицы из файла или возврат нулевого указателя если произошла ошибка
+ */
 Matrix<qint16>* TInterface::read(QString& filename) {
     QFile f(filename);
     if (!f.open(QFile::ReadOnly | QFile::Text)) return 0;
@@ -56,6 +62,9 @@ Matrix<qint16>* TInterface::read(QString& filename) {
     return matr;
 }
 
+/*
+ * Проверить является ли матрица графом
+ */
 QString TInterface::check(Matrix<qint16>* matr) {
     if (matr->getSizeX() != matr->getSizeY()) return QString("Invalid matrix size");
     for (unsigned i = 0; i < matr->getSizeX(); i++) {
@@ -69,6 +78,9 @@ QString TInterface::check(Matrix<qint16>* matr) {
     return QString();
 }
 
+/*
+ * Открыть интерфейс отрисовщика
+ */
 void TInterface::openFile() {
     QString fi = QFileDialog::getOpenFileName(this, "Opening Graph...", QString(), "all (*.*);;graphs (*.txt)");
     if (!fi.isEmpty() && !fi.isNull()) {
