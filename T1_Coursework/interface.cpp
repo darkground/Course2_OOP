@@ -15,6 +15,14 @@ TInterface::~TInterface()
     delete ui;
 }
 
+
+/*
+ * Применить настройки интерфейса
+ * unsigned l, w - ширина, высота (>= 32)
+ * double r - радиус (< ширина или высота / 2)
+ * double v - начальная скорость
+ * double a - начальный угол
+ */
 void TInterface::apply()
 {
     bool ok_l = false;
@@ -35,6 +43,10 @@ void TInterface::apply()
     ui->canvas->setSettings(l, w, r, v, a);
 }
 
+/*
+ * Установка состояния симуляции
+ * Если она запущена, то она остановится, и наоборот
+ */
 void TInterface::state(){
     ui->canvas->setState();
     if (ui->canvas->getState()) {
