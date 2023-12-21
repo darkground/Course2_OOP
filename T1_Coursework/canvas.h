@@ -8,8 +8,6 @@
 
 class TCanvas : public QWidget
 {
-    const double update_rate = 60;
-
 public:
     TCanvas(QWidget* parent = 0);
     ~TCanvas();
