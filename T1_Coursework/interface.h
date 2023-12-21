@@ -2,6 +2,7 @@
 #define TINTERFACE_H
 
 #include <QMainWindow>
+#include <QTimer>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class TInterface; }
@@ -17,6 +18,7 @@ public:
 
 private slots:
     void apply();
+    void state();
 
 private:
     Ui::TInterface *ui;
