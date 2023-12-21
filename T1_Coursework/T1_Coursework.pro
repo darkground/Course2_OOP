@@ -11,11 +11,13 @@ CONFIG += c++17
 SOURCES += \
     canvas.cpp \
     main.cpp \
-    interface.cpp
+    interface.cpp \
+    physics.cpp
 
 HEADERS += \
     canvas.h \
-    interface.h
+    interface.h \
+    physics.h
 
 FORMS += \
     interface.ui
