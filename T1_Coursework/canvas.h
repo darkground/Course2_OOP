@@ -3,15 +3,30 @@
 
 #include <QWidget>
 #include <QPainter>
+#include <QTimer>
+#include "physics.h"
 
 class TCanvas : public QWidget
 {
+    const double update_rate = 60;
+
 public:
     TCanvas(QWidget* parent = 0);
-    void resize(unsigned, unsigned);
+    ~TCanvas();
+    void setSettings(unsigned l, unsigned w, double r = 25., double v = 20., double a = 45.);
+    void setState(bool r);
+    void setState();
+    bool getState();
 
-protected:
+private:
     void paintEvent(QPaintEvent*);
+
+    TPhysics *physics;
+    QTimer *timer;
+    bool running = false;
+
+private slots:
+    void physics_process();
 };
 
 #endif // TCANVAS_H
