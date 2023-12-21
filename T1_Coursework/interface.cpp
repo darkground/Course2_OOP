@@ -6,15 +6,14 @@ TInterface::TInterface(QWidget *parent) : QMainWindow(parent), ui(new Ui::TInter
 {
     ui->setupUi(this);
 
-    connect(ui->applyBtn, SIGNAL(clicked()), this, SLOT(apply()));
-    connect(ui->stateBtn, SIGNAL(clicked()), this, SLOT(state()));
+    connect(ui->applyBtn, &QPushButton::clicked, this, &TInterface::apply);
+    connect(ui->stateBtn, &QPushButton::clicked, this, &TInterface::state);
 }
 
 TInterface::~TInterface()
 {
     delete ui;
 }
-
 
 /*
  * Применить настройки интерфейса
