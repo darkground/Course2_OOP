@@ -11,12 +11,13 @@ class TCanvas : public QWidget
 public:
     TCanvas(QWidget* parent = 0);
     ~TCanvas();
+
     void setSettings(unsigned l, unsigned w, double r = 25., double v = 20., double a = 45.);
     void setState(bool r);
     void setState();
     bool getState();
 
-private:
+protected:
     void paintEvent(QPaintEvent*);
 
     TPhysics *physics;
